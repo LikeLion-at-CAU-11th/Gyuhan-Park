@@ -1,0 +1,107 @@
+html,
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    width: 90vw;
+    height: 90vh;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 1px 1px 1px 1px gray;
+    border-radius: 30px;
+}
+
+.nav {
+    flex-basis: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    background-color: lightgreen;
+    border-radius: 30px;
+    transition: all 1s;
+}
+
+.title {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.article {
+    flex-basis: 73%;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recent-article {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-basis: 48%;
+    flex-wrap: wrap;
+}
+
+.recent {
+    flex-basis: 48%;
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 48%;
+
+}
+
+.popular-article {
+    flex-basis: 48%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.popular {
+    flex-basis: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: lightpink;
+    align-content: space-between;
+    height: 48%;
+
+}
+
+.wide {
+    flex-basis: 100%;
+}
+
+@media all and (max-width: 800px) {
+    .nav {
+        width: 100px;
+        transition: all 1s;
+        transform: rotate(90deg);
+    }
+}
+
+@media all and (max-width: 500px) {
+    .nav {
+        width: 30%;
+        transition: all 1s;
+        transform: rotate(180deg);
+    }
+}
