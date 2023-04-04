@@ -73,6 +73,16 @@
 
 .project {
     border: 5px solid purple; 
-    flex-basis: 32%;  
+    flex-basis: 32%;
+    display: flex;
+    justify-content: center;  
+}
+.project img{
+    width: 200px;
+    height: 300px;
+}
 
+.project img.wide{
+    width: 300px;
+    height: 300px;
 }
