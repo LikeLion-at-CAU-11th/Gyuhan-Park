@@ -27,7 +27,7 @@
     width: 200px;
     height: 200px;
     flex-basis: 40%;
-    background: url('./profile.JPG');
+    background: url('./assets/images/profile.JPG');
     background-size: cover;
     box-shadow: 2px 2px 2px 2px gray;
 
