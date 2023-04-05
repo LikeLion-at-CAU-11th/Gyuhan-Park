@@ -1,0 +1,41 @@
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.centerPDiv {
+    text-align: center;
+}
+.centerP {
+    /* text-align: center; */
+    border: solid 1px black;
+}
+.centerSpan {
+    text-align: center;
+    border: solid 1px black;
+}
+.centerDiv {
+    text-align: center;
+    border: solid 1px black;
+}
+
+.centerDiv2 {
+    border: solid 1px black;
+    margin: 0 auto;
+    width: 300px;
+}
+
+body {
+    background-color: mediumspringgreen;
+}
+.container { 
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    margin: auto;
+    width: 400px;
+    background-color: white;
+}
+
+.top {
+    text-align: center;
+}

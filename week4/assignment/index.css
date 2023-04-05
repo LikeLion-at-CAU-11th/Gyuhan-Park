@@ -1,0 +1,116 @@
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.container {
+    display: flex;
+    border-radius: 10%;
+    height: 95%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: lightgreen;
+    border: 5px solid black;
+
+}
+
+.profile {
+    display: flex;
+    height: 100%;
+    flex-basis: 40%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.profile-image {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    flex-basis: 40%;
+    background: url('./assets/images/profile.JPG');
+    background-size: cover;
+    box-shadow: 2px 2px 2px 2px gray;
+    transition: all 2s;
+    transform: rotate(-1turn);
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    flex-basis: 55%;
+}
+
+
+.content {
+    display: flex;
+    height: 100%;
+    flex-basis: 60%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10px;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%;
+    padding: 10px;
+}
+
+.introduction li {
+    margin-bottom: 10px;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 55%;
+    
+
+}
+
+.project-introduction {
+    display: flex;
+    flex-basis: 70%;
+}
+
+.project {
+    flex-basis: 32%;
+    display: flex;
+    justify-content: center;  
+}
+.project img{
+    display: flex;
+    width: 50%;
+    height: 100%;
+}
+
+.project img.wide{
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (max-width: 500px) {
+    body {
+        background-color: lightgreen;
+    }
+    .profile-image {
+        margin-top: 30%;
+        transition: all 2s;
+        transform: rotate(1turn) scale(1.3, 1.3) ;
+    }
+
+    .container {
+        display: block;
+        border: 0;
+    }
+    .profile-content li {
+        font-size: 20px;
+    }
+}
