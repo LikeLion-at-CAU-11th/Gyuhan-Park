@@ -40,6 +40,7 @@ const displayComputerChoice = (computerChoice) => {
 };
 
 const startGame = (myChoice) => {
+  clearInterval(intervalID);
   const computerChoice = getComputerChoice();
   displayComputerChoice(computerChoice);
   const resultAlpha = myChoice[0][0] + computerChoice[0][0];
@@ -62,6 +63,12 @@ const startGame = (myChoice) => {
       break;
   }
 };
+
+const getInterval = () => {
+  return setInterval(() => displayComputerChoice(getComputerChoice()), 300);
+};
+
+const intervalID = getInterval();
 
 rockBtn.addEventListener("click", displayMyChoice);
 scissorsBtn.addEventListener("click", displayMyChoice);
