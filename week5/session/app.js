@@ -40,7 +40,7 @@ const displayComputerChoice = (computerChoice) => {
 };
 
 const startGame = (myChoice) => {
-  clearInterval(intervalID);
+  clearInterval(intervalId);
   const computerChoice = getComputerChoice();
   displayComputerChoice(computerChoice);
   const resultAlpha = myChoice[0][0] + computerChoice[0][0];
@@ -62,13 +62,16 @@ const startGame = (myChoice) => {
       result.innerText = "draw";
       break;
   }
+  setTimeout(() => {
+    intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
+  }, 2000);
 };
 
-const getInterval = () => {
-  return setInterval(() => displayComputerChoice(getComputerChoice()), 300);
+const getRandomComputerChoiceBeforeStart = () => {
+  displayComputerChoice(getComputerChoice());
 };
 
-const intervalID = getInterval();
+let intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
 
 rockBtn.addEventListener("click", displayMyChoice);
 scissorsBtn.addEventListener("click", displayMyChoice);
