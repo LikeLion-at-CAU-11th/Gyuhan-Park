@@ -41,6 +41,14 @@ const displayComputerChoice = (computerChoice) => {
   computerHandIcon.className = computerChoice[1];
 };
 
+const changeScore = () => {
+  if (result.innerText == "win") {
+    myScore.innerText = parseInt(myScore.innerText) + 1;
+  } else if (result.innerText == "lose") {
+    computerScore.innerText = parseInt(computerScore.innerText) + 1;
+  }
+};
+
 const startGame = (myChoice) => {
   clearInterval(intervalId);
   const computerChoice = getComputerChoice();
@@ -64,6 +72,7 @@ const startGame = (myChoice) => {
       result.innerText = "draw";
       break;
   }
+  changeScore();
   disableBtn();
   setTimeout(() => {
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
