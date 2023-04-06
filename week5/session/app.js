@@ -20,7 +20,6 @@ const result = document.querySelector(".display-result");
 const allButtons = document.querySelectorAll("button");
 
 const audioContainer = document.querySelector("#audioContainer");
-const playBtn = document.querySelector(".js-playBtn");
 const startBtn = document.getElementById("start-display");
 
 const displayMyChoice = (e) => {
@@ -64,18 +63,20 @@ const startGame = (myChoice) => {
     case "rs":
     case "sp":
     case "pr":
-      result.innerText = "win";
+      result.innerText = "win !";
+      result.style.color = "blue";
       break;
     case "sr":
     case "ps":
     case "rp":
-      result.innerText = "lose";
-
+      result.innerText = "lose !";
+      result.style.color = "red";
       break;
     case "rr":
     case "ss":
     case "pp":
-      result.innerText = "draw";
+      result.innerText = "draw !";
+      result.style.color = "green";
       break;
   }
   changeScore();
@@ -133,4 +134,3 @@ scissorsBtn.addEventListener("click", displayMyChoice);
 paperBtn.addEventListener("click", displayMyChoice);
 resetBtn.addEventListener("click", resetScore);
 startBtn.addEventListener("click", getGameDisplay);
-playBtn.addEventListener("click", loadAudio);
