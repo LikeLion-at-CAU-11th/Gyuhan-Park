@@ -67,6 +67,7 @@ const startGame = (myChoice) => {
   disableBtn();
   setTimeout(() => {
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
+    result.innerText = "vs";
     activeBtn();
   }, 2000);
 };
