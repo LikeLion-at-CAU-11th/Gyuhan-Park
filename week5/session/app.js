@@ -118,12 +118,19 @@ const playAudio = () => {
   audioContainer.volume = 0.2;
   audioContainer.loop = true;
   audioContainer.play();
-}
+};
 const loadAudio = () => {
   const source = document.querySelector("#audioSource");
   source.src = `bgm.mp3`;
   audioContainer.load();
   playAudio();
-}
+};
+
+const startBtn = document.getElementById("start-display");
+const getGameDisplay = () => {
+  startBtn.style.display = "none";
+  loadAudio();
+};
+startBtn.addEventListener("click", getGameDisplay);
 
 playBtn.addEventListener("click", loadAudio);
