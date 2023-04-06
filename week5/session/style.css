@@ -58,6 +58,13 @@ button {
     background-color: black;
 }
 
+#reset-button i:hover {
+    cursor: pointer;
+    transform: scale(2, 2) rotate(-360deg);
+    background-color: red;
+    transition: all 1s;
+}
+
 .header-title {
     margin-right: 30px;
 }

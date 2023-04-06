@@ -47,9 +47,9 @@ const displayComputerChoice = (computerChoice) => {
 };
 
 const changeScore = () => {
-  if (result.innerText == "win") {
+  if (result.innerText == "win !") {
     myScore.innerText = parseInt(myScore.innerText) + 1;
-  } else if (result.innerText == "lose") {
+  } else if (result.innerText == "lose !") {
     computerScore.innerText = parseInt(computerScore.innerText) + 1;
   }
 };
@@ -84,6 +84,7 @@ const startGame = (myChoice) => {
   setTimeout(() => {
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
     result.innerText = "vs";
+    result.style.color = "black";
     activeBtn();
   }, 2000);
 };
