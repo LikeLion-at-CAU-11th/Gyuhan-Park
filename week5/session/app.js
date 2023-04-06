@@ -15,6 +15,8 @@ const reset = document.getElementById("reset-button");
 
 const result = document.querySelector(".display-result");
 
+const btn = document.querySelectorAll("button[type=button]");
+
 const displayMyChoice = (e) => {
   const myChoice = [e.currentTarget.id, e.target.className];
   myHandText.innerText = e.currentTarget.id;
@@ -62,9 +64,23 @@ const startGame = (myChoice) => {
       result.innerText = "draw";
       break;
   }
+  disableBtn();
   setTimeout(() => {
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
+    activeBtn();
   }, 2000);
+};
+
+const disableBtn = () => {
+  for (let i = 0; i < 3; i++) {
+    btn[i].disabled = true;
+  }
+};
+
+const activeBtn = () => {
+  for (let i = 0; i < 3; i++) {
+    btn[i].disabled = false;
+  }
 };
 
 const getRandomComputerChoiceBeforeStart = () => {
