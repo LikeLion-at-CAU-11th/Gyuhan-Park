@@ -111,3 +111,19 @@ rockBtn.addEventListener("click", displayMyChoice);
 scissorsBtn.addEventListener("click", displayMyChoice);
 paperBtn.addEventListener("click", displayMyChoice);
 resetBtn.addEventListener("click", resetScore);
+
+const audioContainer = document.querySelector("#audioContainer");
+const playBtn = document.querySelector(".js-playBtn");
+const playAudio = () => {
+  audioContainer.volume = 0.2;
+  audioContainer.loop = true;
+  audioContainer.play();
+}
+const loadAudio = () => {
+  const source = document.querySelector("#audioSource");
+  source.src = `bgm.mp3`;
+  audioContainer.load();
+  playAudio();
+}
+
+playBtn.addEventListener("click", loadAudio);
