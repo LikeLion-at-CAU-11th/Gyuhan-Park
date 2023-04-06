@@ -19,6 +19,10 @@ const result = document.querySelector(".display-result");
 
 const allButtons = document.querySelectorAll("button");
 
+const audioContainer = document.querySelector("#audioContainer");
+const playBtn = document.querySelector(".js-playBtn");
+const startBtn = document.getElementById("start-display");
+
 const displayMyChoice = (e) => {
   const myChoice = [e.currentTarget.id, e.target.className];
   myHandText.innerText = e.currentTarget.id;
@@ -107,13 +111,6 @@ const resetScore = () => {
   setTimeout(() => (headerTitle.innerText = "Rock Scissor Paper !"), 500);
 };
 
-rockBtn.addEventListener("click", displayMyChoice);
-scissorsBtn.addEventListener("click", displayMyChoice);
-paperBtn.addEventListener("click", displayMyChoice);
-resetBtn.addEventListener("click", resetScore);
-
-const audioContainer = document.querySelector("#audioContainer");
-const playBtn = document.querySelector(".js-playBtn");
 const playAudio = () => {
   audioContainer.volume = 0.2;
   audioContainer.loop = true;
@@ -126,11 +123,14 @@ const loadAudio = () => {
   playAudio();
 };
 
-const startBtn = document.getElementById("start-display");
 const getGameDisplay = () => {
   startBtn.style.display = "none";
   loadAudio();
 };
-startBtn.addEventListener("click", getGameDisplay);
 
+rockBtn.addEventListener("click", displayMyChoice);
+scissorsBtn.addEventListener("click", displayMyChoice);
+paperBtn.addEventListener("click", displayMyChoice);
+resetBtn.addEventListener("click", resetScore);
+startBtn.addEventListener("click", getGameDisplay);
 playBtn.addEventListener("click", loadAudio);
