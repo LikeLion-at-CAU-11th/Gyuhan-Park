@@ -93,7 +93,7 @@ button {
     flex-basis: 25%;
 }
 
-#button {
+#rock, #scissors, #paper  {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,9 +106,19 @@ button {
     border-radius: 50%;
 }
 
-#button:hover{
+#rock:hover{
     cursor: pointer;
     background-color: red;
+}
+
+#scissors:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
+
+#paper:hover{
+    cursor: pointer;
+    background-color: green;
 }
 
 
