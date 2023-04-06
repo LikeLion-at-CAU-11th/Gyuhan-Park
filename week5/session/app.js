@@ -11,11 +11,11 @@ const rockBtn = document.getElementById("rock");
 const scissorsBtn = document.getElementById("scissors");
 const paperBtn = document.getElementById("paper");
 
-const reset = document.getElementById("reset-button");
+const resetBtn = document.getElementById("reset-button");
 
 const result = document.querySelector(".display-result");
 
-const btn = document.querySelectorAll("button[type=button]");
+const btn = document.querySelectorAll("button");
 
 const displayMyChoice = (e) => {
   const myChoice = [e.currentTarget.id, e.target.className];
@@ -82,13 +82,13 @@ const startGame = (myChoice) => {
 };
 
 const disableBtn = () => {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     btn[i].disabled = true;
   }
 };
 
 const activeBtn = () => {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     btn[i].disabled = false;
   }
 };
@@ -96,9 +96,14 @@ const activeBtn = () => {
 const getRandomComputerChoiceBeforeStart = () => {
   displayComputerChoice(getComputerChoice());
 };
-
 let intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
+
+const resetScore = () => {
+  myScore.innerText = 0;
+  computerScore.innerText = 0;
+};
 
 rockBtn.addEventListener("click", displayMyChoice);
 scissorsBtn.addEventListener("click", displayMyChoice);
 paperBtn.addEventListener("click", displayMyChoice);
+resetBtn.addEventListener("click", resetScore);
