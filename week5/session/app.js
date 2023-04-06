@@ -1,3 +1,5 @@
+const headerTitle = document.querySelector(".header-title");
+
 const myHandIcon = document.querySelector("#my-hand-icon > i");
 const computerHandIcon = document.querySelector("#computer-hand-icon > i");
 
@@ -15,7 +17,7 @@ const resetBtn = document.getElementById("reset-button");
 
 const result = document.querySelector(".display-result");
 
-const btn = document.querySelectorAll("button");
+const allButtons = document.querySelectorAll("button");
 
 const displayMyChoice = (e) => {
   const myChoice = [e.currentTarget.id, e.target.className];
@@ -83,13 +85,13 @@ const startGame = (myChoice) => {
 
 const disableBtn = () => {
   for (let i = 0; i < 4; i++) {
-    btn[i].disabled = true;
+    allButtons[i].disabled = true;
   }
 };
 
 const activeBtn = () => {
   for (let i = 0; i < 4; i++) {
-    btn[i].disabled = false;
+    allButtons[i].disabled = false;
   }
 };
 
@@ -101,6 +103,8 @@ let intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
 const resetScore = () => {
   myScore.innerText = 0;
   computerScore.innerText = 0;
+  headerTitle.innerText = "@@@  Reset  @@@";
+  setTimeout(() => (headerTitle.innerText = "Rock Scissor Paper !"), 500);
 };
 
 rockBtn.addEventListener("click", displayMyChoice);
