@@ -154,7 +154,6 @@ const changeMode = () => {
     modeChangeBtn.innerText = "light mode";
     resetBtn.style.borderColor = "white";
     result.style.color = "white";
-    gameBtn;
   } else if (INNER_TEXT === "light mode") {
     modeChangeBtn.innerText = "dark mode";
     result.style.color = "black";
