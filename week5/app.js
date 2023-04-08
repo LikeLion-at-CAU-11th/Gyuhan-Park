@@ -90,7 +90,11 @@ const startGame = (myChoice) => {
   changeScore();
   disableBtn();
   setTimeout(() => {
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
+
     result.innerText = "vs";
     result.style.color = "";
     activeBtn();
@@ -98,15 +102,15 @@ const startGame = (myChoice) => {
 };
 
 const disableBtn = () => {
-  for (let i = 0; i < 4; i++) {
-    allButtons[i].disabled = true;
-  }
+  allButtons.forEach((button) => {
+    button.disabled = true;
+  });
 };
 
 const activeBtn = () => {
-  for (let i = 0; i < 4; i++) {
-    allButtons[i].disabled = false;
-  }
+  allButtons.forEach((button) => {
+    button.disabled = false;
+  });
 };
 
 const getRandomComputerChoiceBeforeStart = () => {
@@ -143,9 +147,9 @@ const changeMode = () => {
   body.classList.toggle("dark-mode");
   modeChangeBtn.classList.toggle("dark-mode");
   contentBox.classList.toggle("dark-mode-border");
-  for (let i = 0; i < gameBtn.length; i++) {
-    gameBtn[i].classList.toggle("dark-mode-border");
-  }
+  gameBtn.forEach((button) => {
+    button.classList.toggle("dark-mode-border");
+  });
   if (INNER_TEXT === "dark mode") {
     modeChangeBtn.innerText = "light mode";
     resetBtn.style.borderColor = "white";
