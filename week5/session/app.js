@@ -1,3 +1,5 @@
+const body = document.querySelector("body");
+
 const headerTitle = document.querySelector(".header-title");
 
 const myHandIcon = document.querySelector("#my-hand-icon > i");
@@ -9,9 +11,9 @@ const computerHandText = document.getElementById("computer-hand-text");
 const myScore = document.querySelector(".my-score");
 const computerScore = document.querySelector(".computer-score");
 
-const rockBtn = document.getElementById("rock");
-const scissorsBtn = document.getElementById("scissors");
-const paperBtn = document.getElementById("paper");
+const rockBtn = document.querySelector(".rock");
+const scissorsBtn = document.querySelector(".scissors");
+const paperBtn = document.querySelector(".paper");
 
 const resetBtn = document.getElementById("reset-button");
 
@@ -22,11 +24,17 @@ const allButtons = document.querySelectorAll("button");
 const audioContainer = document.querySelector("#audioContainer");
 const startBtn = document.getElementById("start-display");
 
-const displayMyChoice = (e) => {
-  const myChoice = [e.currentTarget.id, e.target.className];
-  myHandText.innerText = e.currentTarget.id;
-  myHandIcon.className = e.target.className;
+const modeChangeBtn = document.getElementById("dark-mode-btn");
+const contentBox = document.querySelector(".contents-wrapper");
+const gameBtn = document.querySelectorAll(".button-section > button");
 
+const displayMyChoice = (e) => {
+  const myChoiceText = e.currentTarget.className.split(" ")[0];
+  const myChoiceIcon = e.target.className;
+  myHandText.innerText = myChoiceText;
+  myHandIcon.className = myChoiceIcon;
+
+  const myChoice = [myChoiceText, myChoiceIcon];
   startGame(myChoice);
 };
 
@@ -84,7 +92,7 @@ const startGame = (myChoice) => {
   setTimeout(() => {
     intervalId = setInterval(() => getRandomComputerChoiceBeforeStart(), 300);
     result.innerText = "vs";
-    result.style.color = "black";
+    result.style.color = "";
     activeBtn();
   }, 2000);
 };
@@ -130,8 +138,28 @@ const getGameDisplay = () => {
   loadAudio();
 };
 
+const changeMode = () => {
+  const INNER_TEXT = modeChangeBtn.innerText;
+  body.classList.toggle("dark-mode");
+  modeChangeBtn.classList.toggle("dark-mode");
+  contentBox.classList.toggle("dark-mode-border");
+  for (let i = 0; i < gameBtn.length; i++) {
+    gameBtn[i].classList.toggle("dark-mode-border");
+  }
+  if (INNER_TEXT === "dark mode") {
+    modeChangeBtn.innerText = "light mode";
+    resetBtn.style.borderColor = "white";
+    result.style.color = "white";
+    gameBtn;
+  } else if (INNER_TEXT === "light mode") {
+    modeChangeBtn.innerText = "dark mode";
+    result.style.color = "black";
+  }
+};
+
 rockBtn.addEventListener("click", displayMyChoice);
 scissorsBtn.addEventListener("click", displayMyChoice);
 paperBtn.addEventListener("click", displayMyChoice);
 resetBtn.addEventListener("click", resetScore);
 startBtn.addEventListener("click", getGameDisplay);
+modeChangeBtn.addEventListener("click", changeMode);

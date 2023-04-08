@@ -52,13 +52,15 @@ button {
     font-size: 15px;
     border: 1px solid black;
     border-radius: 50%;
-
+    display: flex;
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
     padding: 3px;
-    color: white;
-    background-color: black;
 }
 
-#reset-button i:hover {
+#reset-button:hover {
     cursor: pointer;
     transform: scale(2, 2) rotate(-360deg);
     background-color: red;
@@ -69,7 +71,7 @@ button {
     margin-right: 30px;
 }
 
-#contents-wrapper {
+.contents-wrapper {
     width: 500px;
     height: 500px;
     border: 3px solid black;
@@ -122,7 +124,7 @@ button {
     flex-basis: 25%;
 }
 
-#rock, #scissors, #paper  {
+.rock, .scissors, .paper  {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,17 +137,17 @@ button {
     border-radius: 50%;
 }
 
-#rock:hover{
+.rock:hover{
     cursor: pointer;
     background-color: red;
 }
 
-#scissors:hover{
+.scissors:hover{
     cursor: pointer;
     background-color: yellow;
 }
 
-#paper:hover{
+.paper:hover{
     cursor: pointer;
     background-color: green;
 }
@@ -168,4 +170,24 @@ button {
     color: white;
 }
 
+.dark-mode {
+    background-color: black;
+    color: white;
+}
 
+.dark-mode-border {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+
+#dark-mode-btn.dark-mode {
+    border: 3px solid white;
+}
+
+#dark-mode-btn.dark-mode:hover {
+    cursor: pointer;
+    background-color: white;
+    color:black;
+}
