@@ -78,6 +78,7 @@ button {
 
 .score-section {
     justify-content: space-evenly;
+    align-items: center;
     flex-basis: 15%;
 }
 
@@ -147,6 +148,24 @@ button {
 #paper:hover{
     cursor: pointer;
     background-color: green;
+}
+
+#dark-mode-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+#dark-mode-btn {
+    border: 3px solid black;
+    border-radius: 20%;
+    padding: 5;
+    margin-bottom: 10px;
+}
+
+#dark-mode-btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 
