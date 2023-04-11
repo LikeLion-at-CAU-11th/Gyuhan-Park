@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보</title>
+    <link rel="stylesheet" href="./style.css" >
+</head>
+<body>
+    <div id="start-display">
+        <button>start !</button>
+    </div>
+    <div id="header-wrapper" class="row">
+        <div class="header-title">Rock Scissor Paper !</div>
+        <button id="reset-button" class="dark-mode"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+    </div>
+    <div class="contents-wrapper column">
+        <section class="score-section row">
+            <div class="my-score">0</div>
+            <div class="score">score</div>
+            <div class="computer-score">0</div>
+        </section>
+
+        <section class="display-section row">
+            <div class="display-main column">
+                <div class="display-title row">Me</div>
+                <div id="my-hand-icon" class="row"><i class="fa-regular fa-hand-back-fist"></i></div>
+                <div id="my-hand-text" class="row">rock</div>
+            </div>
+            <div class="display-result row">vs</div>
+            <div class="display-main column">
+                <div class="display-title row">Computer</div>
+                <div id="computer-hand-icon" class="row"><i class="fa-regular fa-hand-scissors fa-rotate-90"></i></div>
+                <div id="computer-hand-text" class="row">scissors</div>
+            </div>
+
+        </section>
+        <section class="button-section row">
+            <button type="button" class="rock"><i id="button" class="fa-regular fa-hand-back-fist"></i></button>
+            <button type="button" class="scissors"><i id="button" class="fa-regular fa-hand-scissors fa-rotate-90"></i></button>
+            <button type="button" class="paper"><i id="button" class="fa-regular fa-hand"></i></button>
+            <audio id="audioContainer"> <!-- audio play를 위함 -->
+                <source id="audioSource" src="" /> <!-- audio 파일 -->
+                <!-- Your browser does not support the audio format. -->
+              </audio>
+        </section>
+        <div id="dark-mode-btn-container"><button id="dark-mode-btn">dark mode</button></div>
+    </div>
+    <script src="https://kit.fontawesome.com/001200a43b.js" crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

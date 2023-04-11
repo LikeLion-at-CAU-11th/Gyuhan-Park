@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Delicious Handrawn';
+    font-size: 30px;
+}
+
+#start-display {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 20%;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    transition: all 1s;
+}
+
+#start-display:hover {
+    cursor: pointer;
+    transition: all 1s;
+    background-color: tomato;
+}
+
+button {
+    all: unset;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+#reset-button {
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+
+#reset-button:hover {
+    cursor: pointer;
+    transform: scale(2, 2) rotate(-360deg);
+    background-color: red;
+    transition: all 1s;
+}
+
+.header-title {
+    margin-right: 30px;
+}
+
+.contents-wrapper {
+    width: 500px;
+    height: 500px;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+.score-section {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-basis: 15%;
+}
+
+.display-section {
+    justify-content: space-evenly;
+    flex-basis: 60%;
+}
+
+
+.display-title {
+    flex-basis: 10%;
+    justify-content: center;
+}
+
+#my-hand-icon, #computer-hand-icon {
+    flex-basis: 80%;
+    font-size: 80px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+
+}
+
+#my-hand-text, #computer-hand-text {
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+
+.display-result {
+    align-items: center;
+}
+
+
+
+.button-section {
+    justify-content: center;
+    flex-basis: 25%;
+}
+
+.rock, .scissors, .paper  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width:70px;
+    height:70px;
+
+    font-size: 60px;
+    border: 4px solid black;
+    border-radius: 50%;
+}
+
+.rock:hover{
+    cursor: pointer;
+    background-color: red;
+}
+
+.scissors:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
+
+.paper:hover{
+    cursor: pointer;
+    background-color: green;
+}
+
+#dark-mode-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+#dark-mode-btn {
+    border: 3px solid black;
+    border-radius: 20%;
+    padding: 5;
+    margin-bottom: 10px;
+}
+
+#dark-mode-btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.dark-mode-border {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+
+#dark-mode-btn.dark-mode {
+    border: 3px solid white;
+}
+
+#dark-mode-btn.dark-mode:hover {
+    cursor: pointer;
+    background-color: white;
+    color:black;
+}
