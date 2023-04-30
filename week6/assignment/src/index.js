@@ -12,18 +12,21 @@ const carList = new CarList();
 const handleInputForm = (e) => {
   e.preventDefault();
   try {
-    if (!inputName.value) throw "inputNameError";
-    if (!inputCount.value) throw "inputCountError";
+    if (inputName.value.length === 0) throw "inputNameError";
+    if (inputCount.value.length === 0) throw "inputCountError";
 
     const gameCount = inputCount.value;
     if (inputName.value.includes(",")) {
       const cars = inputName.value.split(",");
       cars.forEach((carName) => {
+        carName = carName.trim();
         if (carName.length > 5) throw "inputNameLengthError";
+        if (carName.length === 0) throw "inputNameError";
         carList.addCar(new Car(carName));
       });
       carList.showCarList(gameCount);
     } else {
+      inputName.value = inputName.value.trim();
       if (inputName.value.length > 5) throw "inputNameLengthError";
       carList.addCar(new Car(inputName.value));
       carList.showCarList(gameCount);
