@@ -1,4 +1,6 @@
 import Car from "./DOM/Car.js";
+import CarList from "./DOM/CarList.js";
+import Div from "./DOM/Div.js";
 
 const inputName = document.getElementById("car-names-input");
 const inputCount = document.getElementById("racing-count-input");
@@ -8,8 +10,9 @@ const inputCountForm = document.getElementById("racing-count-form");
 
 const gameResult = document.getElementById("result");
 
+const carList = new CarList();
 
-const handleCarNameForm = (e) => {
+const handleInputForm = (e) => {
   e.preventDefault();
   if (!inputName.value) {
     alert("자동차 이름을 입력해주세요");
@@ -21,27 +24,24 @@ const handleCarNameForm = (e) => {
     inputCount.value = "";
     return;
   }
-  console.log(inputName.value);
+
+  const gameCount = inputCount.value;
+
   if (inputName.value.includes(",")) {
     const cars = inputName.value.split(",");
-    const carList = [];
 
     cars.forEach((carName) => {
-      carName && carList.push(new Car(carName));
+      carName && carList.addCar(new Car(carName));
     });
-    console.log(carList);
-    for (let i = 0; i < inputCount.value; i++) {
-      carList.forEach((car) => {
-        car.setScore();
-        console.log("name, score: ", car.name, car.score);
-        gameResult.appendChild(car.line);
-      });
-    }
+
+    carList.showCarList(gameCount);
   } else {
-    new Car(inputName.value);
+    carList.addCar(new Car(inputName.value));
+    carList.showCarList(gameCount);
   }
   inputName.value = "";
+  inputCount.value = "";
 };
 
-carNameForm.addEventListener("submit", handleCarNameForm);
-inputCountForm.addEventListener("submit", handleCarNameForm);
+carNameForm.addEventListener("submit", handleInputForm);
+inputCountForm.addEventListener("submit", handleInputForm);
