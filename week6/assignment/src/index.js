@@ -9,9 +9,14 @@ const inputCountForm = document.getElementById("racing-count-form");
 
 const carList = new CarList();
 
+const gameResult = document.getElementById("result");
+
 const handleInputForm = (e) => {
   e.preventDefault();
   try {
+    gameResult.replaceChildren();
+    carList.clearCar();
+
     if (inputName.value.length === 0) throw "inputNameError";
     if (inputCount.value.length === 0) throw "inputCountError";
 
@@ -31,7 +36,6 @@ const handleInputForm = (e) => {
       carList.addCar(new Car(inputName.value));
       carList.showCarList(gameCount);
     }
-
     carList.showWinner();
   } catch (error) {
     if (error === "inputNameError") {

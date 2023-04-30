@@ -9,6 +9,10 @@ class CarList {
     this.cars.push(car);
   }
 
+  clearCar() {
+    this.cars.splice(0);
+  }
+
   showCarList(gameCount) {
     for (let i = 0; i < gameCount; i++) {
       for (let j = 0; j < this.cars.length; j++) {
