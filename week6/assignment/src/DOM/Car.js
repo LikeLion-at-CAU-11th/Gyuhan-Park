@@ -1,6 +1,6 @@
 import Div from "./Div.js";
-const gameResult = document.getElementById("result");
 
+const gameResult = document.getElementById("result");
 class Car {
   constructor(name) {
     this.name = name;
