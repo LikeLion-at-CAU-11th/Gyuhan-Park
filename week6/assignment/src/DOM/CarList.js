@@ -9,7 +9,7 @@ class CarList {
     this.cars.push(car);
   }
 
-  clearCar() {
+  clearCarList() {
     this.cars.splice(0);
   }
 
