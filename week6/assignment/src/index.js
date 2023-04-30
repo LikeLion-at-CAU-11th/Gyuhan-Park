@@ -9,45 +9,39 @@ const inputCountForm = document.getElementById("racing-count-form");
 
 const carList = new CarList();
 
-let errorFlag = 0;
-
 const handleInputForm = (e) => {
   e.preventDefault();
-  if (!inputName.value) {
-    alert("자동차 이름을 입력해주세요");
+  try {
+    if (!inputName.value) throw "inputNameError";
+    if (!inputCount.value) throw "inputCountError";
+
+    const gameCount = inputCount.value;
+    if (inputName.value.includes(",")) {
+      const cars = inputName.value.split(",");
+      cars.forEach((carName) => {
+        if (carName.length > 5) throw "inputNameLengthError";
+        carList.addCar(new Car(carName));
+      });
+      carList.showCarList(gameCount);
+    } else {
+      if (inputName.value.length > 5) throw "inputNameLengthError";
+      carList.addCar(new Car(inputName.value));
+      carList.showCarList(gameCount);
+    }
+
+    carList.showWinner();
+  } catch (error) {
+    if (error === "inputNameError") {
+      alert("자동차 이름을 입력해주세요");
+    } else if (error === "inputCountError") {
+      alert("횟수를 입력해주세요");
+    } else if (error === "inputNameLengthError") {
+      alert("자동차의 이름을 5자 이내로 입력해주세요");
+    }
+  } finally {
     inputName.value = "";
-    return;
-  }
-
-  if (!inputCount.value) {
-    alert("횟수를 입력해주세요");
-    inputCount.value = "";
-    return;
-  }
-
-  const gameCount = inputCount.value;
-  if (inputName.value.includes(",")) {
-    const cars = inputName.value.split(",");
-    cars.forEach((carName) => {
-      if (carName.length > 5) errorFlag = 1;
-      !errorFlag && carList.addCar(new Car(carName));
-    });
-    !errorFlag && carList.showCarList(gameCount);
-  } else {
-    if (inputName.value.length > 5) errorFlag = 1;
-
-    !errorFlag && carList.addCar(new Car(inputName.value));
-    !errorFlag && carList.showCarList(gameCount);
-  }
-
-  if (errorFlag) {
-    alert("자동차 이름을 5자 이내로 입력해주세요");
-    inputName.value = "";
     inputCount.value = "";
   }
-  carList.showWinner();
-  inputName.value = "";
-  inputCount.value = "";
 };
 
 carNameForm.addEventListener("submit", handleInputForm);
