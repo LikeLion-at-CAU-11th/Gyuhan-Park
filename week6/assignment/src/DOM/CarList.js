@@ -4,6 +4,7 @@ class CarList {
   constructor() {
     this.cars = [];
   }
+
   addCar(car) {
     this.cars.push(car);
   }
@@ -15,6 +16,19 @@ class CarList {
       }
       gameResult.appendChild(document.createElement("br"));
     }
+  }
+
+  showWinner() {
+    const numbers = {};
+    for (let i = 0; i < this.cars.length; i++) {
+      numbers[this.cars[i].name] = this.cars[i].num;
+    }
+    const maxNumber = Math.max(...Object.values(numbers));
+    const winners = Object.keys(numbers).filter(
+      (key) => numbers[key] === maxNumber
+    );
+    const finalWinner = document.getElementById("racing-winners");
+    finalWinner.innerText = winners.join(", ");
   }
 }
 

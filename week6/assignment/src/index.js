@@ -1,14 +1,11 @@
 import Car from "./DOM/Car.js";
 import CarList from "./DOM/CarList.js";
-import Div from "./DOM/Div.js";
 
 const inputName = document.getElementById("car-names-input");
 const inputCount = document.getElementById("racing-count-input");
 
 const carNameForm = document.getElementById("car-names-form");
 const inputCountForm = document.getElementById("racing-count-form");
-
-const gameResult = document.getElementById("result");
 
 const carList = new CarList();
 
@@ -26,19 +23,18 @@ const handleInputForm = (e) => {
   }
 
   const gameCount = inputCount.value;
-
   if (inputName.value.includes(",")) {
     const cars = inputName.value.split(",");
-
     cars.forEach((carName) => {
       carName && carList.addCar(new Car(carName));
     });
-
     carList.showCarList(gameCount);
   } else {
     carList.addCar(new Car(inputName.value));
     carList.showCarList(gameCount);
   }
+
+  carList.showWinner();
   inputName.value = "";
   inputCount.value = "";
 };
