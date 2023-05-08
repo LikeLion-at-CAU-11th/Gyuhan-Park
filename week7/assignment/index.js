@@ -11,6 +11,7 @@ async function getData() {
   const toJson = await fetchData.json();
 
   const items = await toJson.response.body.items.item;
+  console.log(items);
   items.map((data, i) => {
     const link = document.createElement("div");
     link.id = "list";
@@ -31,20 +32,15 @@ async function getData() {
     const day = date.slice(6, 8);
     const photographer = data.galPhotographer;
     const keyword = data.galSearchKeyword;
+    const imgUrl = data.galWebImageUrl;
     button.innerText = "더보기";
     const moveDetailLink = document.createElement("a");
-    moveDetailLink.href = `detail.html?year=${year}&month=${month}&day=${day}&photographer=${photographer}&keyword=${keyword}`;
-
- 
-
-
+    moveDetailLink.href = `detail.html?year=${year}&month=${month}&day=${day}&photographer=${photographer}&keyword=${keyword}&imgUrl=${imgUrl}`;
 
     link.appendChild(image);
     link.appendChild(text);
     moveDetailLink.appendChild(button);
     link.appendChild(moveDetailLink);
-    // link.appendChild(button);
-
     container.append(link);
   });
 }

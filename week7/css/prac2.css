@@ -13,6 +13,7 @@
     align-items: center;
 
     width: 80%;
+    height: 500px;
     margin: 10px 0 ;
     margin: 10px;
     padding-right: 20px;
@@ -22,4 +23,5 @@
 
 img{
     width: 400px;
+    height: 400px;
 }
