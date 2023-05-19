@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { getAllQuestions, getTestResult } from "../../apis/liontest";
 import QuestionSectionComponent from "./QuestionSectionComponent";
+import Result from "./Result";
 
 // 시작하기 버튼 클릭 -> 첫 번째 문제 나옴
 // QuestionSectionComponent 가 한 문제에 대한 컴포넌트
@@ -12,6 +13,7 @@ const LionTestModal = () => {
   const [start, setStart] = useState(false);
   const [question, setQuestion] = useState({});
   const [resultAnswer, setResultAnswer] = useState([]);
+  const [finalResult, setFinalResult] = useState({});
 
   const getQuestion = async (id) => {
     const questionData = await getAllQuestions();
@@ -25,15 +27,14 @@ const LionTestModal = () => {
   };
 
   const handleResultAnswer = (nowAnswer) => {
-    console.log("resultAnswer:", resultAnswer);
     setResultAnswer([...resultAnswer, nowAnswer]);
   };
 
   const handleClickGetResult = async () => {
     const response = await getTestResult(resultAnswer);
-    console.log(response.data.data);
-    console.log("incorrect:", response.data.data.incorrect);
-    console.log("correct:", response.data.data.result);
+    const resultData = response.data.data;
+    setFinalResult(resultData);
+    // result : 맞은 개수 / incorrect:Array[]; incorrect.title: 틀린문제제목, incorrect.answer:틀린문제답
   };
 
   return (
@@ -48,8 +49,14 @@ const LionTestModal = () => {
               handleResultAnswer={handleResultAnswer}
             />
           </>
-        ) : resultAnswer ? (
-          <Button onClick={handleClickGetResult}>결과보기</Button>
+        ) : resultAnswer.length > 0 ? (
+          Object.keys(finalResult).length === 0 ? (
+            <ContentBox>
+              <Button onClick={handleClickGetResult}>결과보기</Button>
+            </ContentBox>
+          ) : (
+            <Result finalResult={finalResult} />
+          )
         ) : (
           <ContentBox>
             <Button onClick={() => getQuestion(0)}>시작하기</Button>

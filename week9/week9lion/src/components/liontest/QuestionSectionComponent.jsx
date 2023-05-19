@@ -14,7 +14,6 @@ const QuestionSectionComponent = (props) => {
   });
 
   const handleClickNextButton = () => {
-    console.log("nowAnswer:", nowAnswer);
     getQuestion(questionNumber + 1);
     setQuestionNumber((prev) => prev + 1);
     setNowAnswer({ ...nowAnswer, id: questionNumber + 1 });
