@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { getAllQuestions } from "../../apis/liontest";
 
 // 클릭한 <Answer> 의 aid값을 nowAnswer의 answer 프로퍼티값으로 사용
 // nowAnswer = {id: 현재문제id, answer: 선택한 aid}
 const QuestionSectionComponent = (props) => {
-  const { question, getQuestion, handleResultAnswer } = props;
+  const { question, getNewQuestion, handleResultAnswer } = props;
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const [nowAnswer, setNowAnswer] = useState({
@@ -14,7 +13,7 @@ const QuestionSectionComponent = (props) => {
   });
 
   const handleClickNextButton = () => {
-    getQuestion(questionNumber + 1);
+    getNewQuestion(questionNumber + 1);
     setQuestionNumber((prev) => prev + 1);
     setNowAnswer({ ...nowAnswer, id: questionNumber + 1 });
     handleResultAnswer(nowAnswer);

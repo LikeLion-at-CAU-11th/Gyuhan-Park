@@ -1,18 +1,25 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import ResultBtn from "./ResultBtn";
 
-const Result = ({ finalResult }) => {
+const Result = ({ finalResult, handleClickGetResult }) => {
   return (
     <>
       <Dom>
-        <Total>점수: {finalResult.result} / 9</Total>
-        {finalResult.incorrect.length > 0 &&
-          finalResult.incorrect.map((data, idx) => (
-            <Fragment key={idx}>
-              <Incorrect>{data.title}</Incorrect>
-              <Answer>정답 : {data.answer}</Answer>
-            </Fragment>
-          ))}
+        {Object.keys(finalResult).length === 0 ? (
+          <ResultBtn handleClickGetResult={handleClickGetResult} />
+        ) : (
+          <>
+            <Total>점수: {finalResult.result} / 9</Total>
+            {finalResult.incorrect.length > 0 &&
+              finalResult.incorrect.map((data, idx) => (
+                <Fragment key={idx}>
+                  <Incorrect>{data.title}</Incorrect>
+                  <Answer>정답 : {data.answer}</Answer>
+                </Fragment>
+              ))}
+          </>
+        )}
       </Dom>
     </>
   );
@@ -31,10 +38,6 @@ const Total = styled.div`
   font-weight: 500;
 `;
 
-const Question = styled.div`
-  width: 100%;
-`;
-
 const Answer = styled.div`
   width: 100%;
   font-size: 15px;
@@ -43,11 +46,6 @@ const Answer = styled.div`
 const Incorrect = styled.div`
   width: 100%;
   font-size: 26px;
-`;
-
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 500;
 `;
 
 export default Result;
