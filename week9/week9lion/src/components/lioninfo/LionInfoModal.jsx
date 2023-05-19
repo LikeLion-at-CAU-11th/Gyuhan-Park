@@ -52,7 +52,7 @@ const LionInfoModal = () => {
         ))}
       </ButtonDom>
       <UserDataSection userData={userData} />
-      {/* <Pagination /> */}
+      <Pagination setUserData={setUserData} />
     </Dom>
   );
 };
