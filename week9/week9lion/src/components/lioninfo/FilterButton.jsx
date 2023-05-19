@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {
+  getAllUserPerPage,
   getUserPerGender,
   getUserPerPage,
   getUserPerStack,
@@ -12,6 +13,7 @@ const FilterButton = (props) => {
     // type에 따라 API 결정
     if (type === "page") {
       const response = await getUserPerPage(1);
+      //   const response = await getAllUserPerPage();
       setUserData(response.data.data);
     } else if (type === "gender") {
       const response = await getUserPerGender(title);
