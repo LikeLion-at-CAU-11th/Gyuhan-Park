@@ -6,11 +6,16 @@ const QuestionSectionComponent = (props) => {
   const { data, getQuestion } = props;
   return (
     <>
-      <Title>{data.title}</Title>
-      {data.answerList.length > 0 &&
-        data.answerList.map((answer, idx) => {
-          return <Answer key={idx}>{answer.content}</Answer>;
-        })}
+      <QuestionSection>
+        <Title>{data.title}</Title>
+      </QuestionSection>
+      <AnswerSection>
+        {data.answerList.length > 0 &&
+          data.answerList.map((answer, idx) => {
+            return <Answer key={idx}>{answer.content}</Answer>;
+          })}
+      </AnswerSection>
+
       <NextButton>다음</NextButton>
     </>
   );
@@ -46,8 +51,7 @@ const Title = styled.div`
 const AnswerSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-
+  width: 60%;
   gap: 15px;
 `;
 
