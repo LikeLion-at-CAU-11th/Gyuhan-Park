@@ -2,21 +2,47 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { getAllQuestions } from "../../apis/liontest";
 
+// 클릭한 <Answer> 의 aid값을 nowAnswer의 answer 프로퍼티값으로 사용
+// nowAnswer = {id: 현재문제id, answer: 선택한 aid}
 const QuestionSectionComponent = (props) => {
-  const { data, getQuestion } = props;
+  const { question, getQuestion, handleResultAnswer } = props;
+  const [questionNumber, setQuestionNumber] = useState(0);
+
+  const [nowAnswer, setNowAnswer] = useState({
+    id: questionNumber,
+    answer: 0,
+  });
+
+  const handleClickNextButton = () => {
+    console.log("nowAnswer:", nowAnswer);
+    getQuestion(questionNumber + 1);
+    setQuestionNumber((prev) => prev + 1);
+    setNowAnswer({ ...nowAnswer, id: questionNumber + 1 });
+    handleResultAnswer(nowAnswer);
+  };
+
   return (
     <>
       <QuestionSection>
-        <Title>{data.title}</Title>
+        <Title>{question.title}</Title>
       </QuestionSection>
       <AnswerSection>
-        {data.answerList.length > 0 &&
-          data.answerList.map((answer, idx) => {
-            return <Answer key={idx}>{answer.content}</Answer>;
+        {question.answerList.length > 0 &&
+          question.answerList.map((answer, idx) => {
+            return (
+              <Answer
+                key={idx}
+                onClick={() =>
+                  setNowAnswer({ ...nowAnswer, answer: answer.aid })
+                }
+              >
+                {answer.content}
+              </Answer>
+            );
           })}
       </AnswerSection>
 
-      <NextButton>다음</NextButton>
+      <NextButton onClick={handleClickNextButton}>다음</NextButton>
     </>
   );
 };
