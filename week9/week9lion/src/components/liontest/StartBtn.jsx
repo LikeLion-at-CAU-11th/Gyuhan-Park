@@ -21,6 +21,9 @@ const Button = styled.div`
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
+  &:hover {
+    background-color: yellow;
+  }
 `;
 
 const ContentBox = styled.div`

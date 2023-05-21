@@ -27,6 +27,23 @@ const LionTestModal = () => {
     }
   };
 
+  const handleClickQuestion = (id) => {
+    setQuestion({
+      ...question,
+      answerList: question.answerList.map((data) =>
+        data.aid === id
+          ? {
+              ...data,
+              clicked: true,
+            }
+          : {
+              ...data,
+              clicked: false,
+            }
+      ),
+    });
+  };
+
   const handleResultAnswer = (nowAnswer) => {
     setResultAnswer([...resultAnswer, nowAnswer]);
   };
@@ -47,6 +64,7 @@ const LionTestModal = () => {
             question={question}
             getNewQuestion={getNewQuestion}
             handleResultAnswer={handleResultAnswer}
+            handleClickQuestion={handleClickQuestion}
           />
         ) : resultAnswer.length > 0 ? (
           <Result

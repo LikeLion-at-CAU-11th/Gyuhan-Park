@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // 클릭한 <Answer> 의 aid값을 nowAnswer의 answer 프로퍼티값으로 사용
-// nowAnswer = {id: 현재문제id, answer: 선택한 aid}
 const QuestionSectionComponent = (props) => {
-  const { question, getNewQuestion, handleResultAnswer } = props;
+  const { question, getNewQuestion, handleResultAnswer, handleClickQuestion } =
+    props;
   const [questionNumber, setQuestionNumber] = useState(0);
 
-  const [nowAnswer, setNowAnswer] = useState({
-    id: questionNumber,
-    answer: 0,
-  });
-
   const handleClickNextButton = () => {
+    const clickedAnswer = question.answerList.filter((data) =>
+      data.clicked === true ? { id: data.aid, answer: data.content } : ""
+    );
+
     getNewQuestion(questionNumber + 1);
     setQuestionNumber((prev) => prev + 1);
-    setNowAnswer({ ...nowAnswer, id: questionNumber + 1 });
-    handleResultAnswer(nowAnswer);
+    handleResultAnswer(
+      clickedAnswer.length > 0
+        ? {
+            id: questionNumber,
+            answer: clickedAnswer[0].aid,
+          }
+        : {
+            id: questionNumber,
+            answer: 0,
+          }
+    );
   };
 
   return (
@@ -30,9 +38,8 @@ const QuestionSectionComponent = (props) => {
             return (
               <Answer
                 key={idx}
-                onClick={() =>
-                  setNowAnswer({ ...nowAnswer, answer: answer.aid })
-                }
+                onClick={() => handleClickQuestion(answer.aid)}
+                clicked={answer.clicked}
               >
                 {answer.content}
               </Answer>
@@ -44,6 +51,22 @@ const QuestionSectionComponent = (props) => {
     </>
   );
 };
+
+const Answer = styled.div`
+  padding: 30px;
+  border-radius: 20px;
+  background-color: beige;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  &:hover {
+    cursor: pointer;
+    background-color: yellow;
+  }
+  border: ${(props) => (props.clicked ? "5px solid skyblue" : "")};
+`;
 
 const NextButton = styled.div`
   display: flex;
@@ -77,17 +100,6 @@ const AnswerSection = styled.div`
   flex-direction: column;
   width: 60%;
   gap: 15px;
-`;
-
-const Answer = styled.div`
-  padding: 30px;
-  border-radius: 20px;
-  background-color: beige;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 `;
 
 export default QuestionSectionComponent;
