@@ -8,12 +8,17 @@ import {
 } from "../../apis/lioninfo";
 
 const FilterButton = (props) => {
-  const { type, title, setUserData } = props;
+  const { type, title, setUserData, handleClickPage, setIsPaged } = props;
   const handleClickButton = async () => {
+    // All 버튼에만 pagenation 주기
+    if (type === "page") setIsPaged(true);
+    else setIsPaged(false);
+
     // type에 따라 API 결정
     if (type === "page") {
       const response = await getUserPerPage(1);
       //   const response = await getAllUserPerPage();
+      handleClickPage("1");
       setUserData(response.data.data);
     } else if (type === "gender") {
       const response = await getUserPerGender(title);
