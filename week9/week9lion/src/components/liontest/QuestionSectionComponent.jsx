@@ -65,7 +65,8 @@ const Answer = styled.div`
     cursor: pointer;
     background-color: yellow;
   }
-  border: ${(props) => (props.clicked ? "5px solid skyblue" : "")};
+  border: ${(props) => (props.clicked ? "5px solid black" : "")};
+  background-color: ${(props) => (props.clicked ? "yellow" : "beige")};
 `;
 
 const NextButton = styled.div`
