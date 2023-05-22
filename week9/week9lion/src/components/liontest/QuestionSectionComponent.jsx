@@ -65,7 +65,11 @@ const Answer = styled.div`
     cursor: pointer;
     background-color: yellow;
   }
-  border: ${(props) => (props.clicked ? "5px solid black" : "")};
+  &:active {
+    transform: scale(1.1);
+  }
+
+  box-shadow: ${(props) => (props.clicked ? "2px 2px 2px 2px gray" : "")};
   background-color: ${(props) => (props.clicked ? "yellow" : "beige")};
 `;
 

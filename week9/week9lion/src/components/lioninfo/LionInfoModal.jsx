@@ -48,6 +48,9 @@ const LionInfoModal = () => {
       title: "pm",
     },
   ];
+  const handleClickSort = () => {
+    setUserData(userData.slice().sort((a, b) => (a.name > b.name ? 1 : -1)));
+  };
 
   // 전체 리스트 (28개 데이터) 받아와 클라이언트단에서 슬라이싱하여, PageButton 컴포넌트 클릭 시 알맞는 데이터 렌더링
   const handleClickPage = async (id) => {
@@ -64,7 +67,13 @@ const LionInfoModal = () => {
   };
   return (
     <Dom>
-      <Title>🍉🍉🍉</Title>
+      <div style={{ display: "flex" }}>
+        <Title>🍉🍉🍉</Title>
+        <ButtonDom>
+          <Button onClick={handleClickSort}>SORT</Button>
+        </ButtonDom>
+      </div>
+
       <ButtonDom>
         {categories.map((category, idx) => (
           <FilterButton
@@ -91,6 +100,7 @@ const LionInfoModal = () => {
 };
 
 const Title = styled.div`
+  width: 300px;
   font-size: 40px;
   color: #535353;
   font-weight: 700;
@@ -112,6 +122,26 @@ const Dom = styled.div`
   padding: 30px 0;
   border-radius: 20px;
   box-shadow: 5px 5px 5px lightgray;
+`;
+
+const Button = styled.div`
+  flex-basis: 13%;
+  height: 50px;
+  font-weight: 700;
+  background-color: orange;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: red;
+  }
+  &:active {
+    transform: scale(1.5);
+  }
 `;
 
 export default LionInfoModal;
