@@ -18,38 +18,56 @@ const LionInfoModal = () => {
   ]);
   const [isPaged, setIsPaged] = useState(false); // pagenation 이 필요한 상황 구분
 
-  const categories = [
+  const [categories, setCategories] = useState([
     {
       type: "page",
       title: "All",
+      clicked: false,
     },
     {
       type: "gender",
       title: "male",
+      clicked: false,
     },
     {
       type: "gender",
       title: "female",
+      clicked: false,
     },
     {
       type: "stack",
       title: "frontend",
+      clicked: false,
     },
     {
       type: "stack",
       title: "backend",
+      clicked: false,
     },
     {
       type: "stack",
       title: "design",
+      clicked: false,
     },
     {
       type: "stack",
       title: "pm",
+      clicked: false,
     },
-  ];
+  ]);
+
   const handleClickSort = () => {
     setUserData(userData.slice().sort((a, b) => (a.name > b.name ? 1 : -1)));
+  };
+
+  const handleClickFilterButton = (title) => {
+    setCategories(
+      categories.map((category) =>
+        category.title === title
+          ? { ...category, clicked: true }
+          : { ...category, clicked: false }
+      )
+    );
   };
 
   // 전체 리스트 (28개 데이터) 받아와 클라이언트단에서 슬라이싱하여, PageButton 컴포넌트 클릭 시 알맞는 데이터 렌더링
@@ -78,11 +96,11 @@ const LionInfoModal = () => {
         {categories.map((category, idx) => (
           <FilterButton
             key={idx}
-            title={category.title}
-            type={category.type}
+            data={category}
             setUserData={setUserData}
             handleClickPage={handleClickPage}
             setIsPaged={setIsPaged}
+            handleClickFilterButton={handleClickFilterButton}
           />
         ))}
       </ButtonDom>

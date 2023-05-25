@@ -7,9 +7,18 @@ import {
   getUserPerStack,
 } from "../../apis/lioninfo";
 
-const FilterButton = (props) => {
-  const { type, title, setUserData, handleClickPage, setIsPaged } = props;
-  const handleClickButton = async () => {
+const FilterButton = ({
+  data,
+  setUserData,
+  handleClickPage,
+  setIsPaged,
+  handleClickFilterButton,
+}) => {
+  const { type, title, clicked } = data;
+
+  const handleClickButton = async (e) => {
+    handleClickFilterButton(e.target.id);
+
     // All 버튼에만 pagenation 주기
     if (type === "page") setIsPaged(true);
     else setIsPaged(false);
@@ -28,7 +37,11 @@ const FilterButton = (props) => {
       setUserData(response.data.data);
     }
   };
-  return <Button onClick={handleClickButton}>{title}</Button>;
+  return (
+    <Button id={title} onClick={handleClickButton} clicked={clicked}>
+      {title}
+    </Button>
+  );
 };
 
 const Button = styled.div`
@@ -42,5 +55,7 @@ const Button = styled.div`
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
+  box-shadow: ${(props) => (props.clicked ? "2px 2px 2px 2px gray" : "")};
+  background-color: ${(props) => (props.clicked ? "yellow" : "beige")};
 `;
 export default FilterButton;
