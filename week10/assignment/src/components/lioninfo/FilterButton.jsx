@@ -7,13 +7,22 @@ import {
   getUserPerStack,
 } from "../../apis/lioninfo";
 
-const FilterButton = ({ data, setUserData, handleClickFilterButton }) => {
+const FilterButton = ({
+  data,
+  setUserData,
+  handleClickFilterButton,
+  handleClickPage,
+  setIsPaged,
+}) => {
   const { type, title, clicked } = data;
   const handleClick = async (e) => {
+    if (type === "page") setIsPaged(true);
+    else setIsPaged(false);
     handleClickFilterButton(e.target.id);
     if (type === "page") {
       const response = await getUserPerPage(1);
       setUserData(response.data.data);
+      handleClickPage("1");
     } else if (type === "gender") {
       const response = await getUserPerGender(title);
       setUserData(response.data.data);

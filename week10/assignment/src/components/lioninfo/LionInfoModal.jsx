@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { getAllUserPerPage } from "../../apis/lioninfo";
+import { getAllUserPerPage, getUserPerPage } from "../../apis/lioninfo";
 import FilterButton from "./FilterButton";
 import Pagination from "./Pagination";
 import UserDataSection from "./UserDataSection";
 
 const LionInfoModal = () => {
   const [userData, setUserData] = useState([]);
+  const [isPaged, setIsPaged] = useState(false);
   const [pages, setPages] = useState([
     { id: "1", clicked: false },
     { id: "2", clicked: false },
@@ -55,7 +56,9 @@ const LionInfoModal = () => {
     },
   ]);
 
-  const handleClickPage = (id) => {
+  const handleClickPage = async (id) => {
+    const response = await getUserPerPage(id);
+    setUserData(response.data.data);
     setPages(
       pages.map((page) =>
         page.id === id
@@ -66,7 +69,6 @@ const LionInfoModal = () => {
   };
 
   const handleClickFilterButton = (title) => {
-    console.log(categories, title);
     setCategories(
       categories.map((category) =>
         category.title === title
@@ -86,11 +88,15 @@ const LionInfoModal = () => {
             data={category}
             setUserData={setUserData}
             handleClickFilterButton={handleClickFilterButton}
+            handleClickPage={handleClickPage}
+            setIsPaged={setIsPaged}
           />
         ))}
       </ButtonDom>
       <UserDataSection userData={userData} />
-      <Pagination pages={pages} handleClickPage={handleClickPage} />
+      {isPaged && (
+        <Pagination pages={pages} handleClickPage={handleClickPage} />
+      )}
     </Dom>
   );
 };
