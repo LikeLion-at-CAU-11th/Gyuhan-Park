@@ -1,16 +1,25 @@
-import "./App.css";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
+import LionInfoModal from "./lioninfo/LionInfoModal";
+import LionTestModal from "./liontest/LionTestModal";
 
-function App() {
+const Home = () => {
+  const [modal, setModal] = useState(0);
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />}></Route>
-    </Routes>
+    <AppDom>
+      <MenuDom>
+        <MenuButton onClick={() => setModal(0)} clicked={modal === 0}>
+          아기사자 정보
+        </MenuButton>
+        <MenuButton onClick={() => setModal(1)} clicked={modal === 1}>
+          멋사인 테스트
+        </MenuButton>
+      </MenuDom>
+      <ModalDom>{modal === 0 ? <LionInfoModal /> : <LionTestModal />}</ModalDom>
+    </AppDom>
   );
-}
+};
 
 const AppDom = styled.div`
   display: flex;
@@ -45,4 +54,4 @@ const ModalDom = styled.div`
   justify-content: center;
 `;
 
-export default App;
+export default Home;
