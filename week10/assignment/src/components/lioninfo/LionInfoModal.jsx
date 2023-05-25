@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getAllUserPerPage, getUserPerPage } from "../../apis/lioninfo";
+import { getUserPerPage } from "../../apis/lioninfo";
 import FilterButton from "./FilterButton";
 import Pagination from "./Pagination";
 import UserDataSection from "./UserDataSection";
+import { useSearchParams } from "react-router-dom";
 
 const LionInfoModal = () => {
   const [userData, setUserData] = useState([]);
-  const [isPaged, setIsPaged] = useState(false);
+  const [isPaged, setIsPaged] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const paramsPage = searchParams.get("page");
   const [pages, setPages] = useState([
     { id: "1", clicked: false },
     { id: "2", clicked: false },
@@ -78,9 +81,22 @@ const LionInfoModal = () => {
     );
   };
 
+  const handleClickSort = () => {
+    setUserData(userData.slice().sort((a, b) => (a.name > b.name ? 1 : -1)));
+  };
+
+  useEffect(() => {
+    if (paramsPage) handleClickPage(paramsPage);
+  }, [paramsPage]);
+
   return (
     <Dom>
-      <Title>🦁 LikeLion 11th 화이팅🦁</Title>
+      <div style={{ display: "flex" }}>
+        <Title>🍉🍉🍉</Title>
+        <ButtonDom>
+          <Button onClick={handleClickSort}>SORT</Button>
+        </ButtonDom>
+      </div>
       <ButtonDom>
         {categories.map((category, index) => (
           <FilterButton
@@ -94,9 +110,7 @@ const LionInfoModal = () => {
         ))}
       </ButtonDom>
       <UserDataSection userData={userData} />
-      {isPaged && (
-        <Pagination pages={pages} handleClickPage={handleClickPage} />
-      )}
+      {isPaged && <Pagination pages={pages} />}
     </Dom>
   );
 };

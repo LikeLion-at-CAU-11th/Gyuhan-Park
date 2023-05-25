@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import LionInfoModal from "./lioninfo/LionInfoModal";
 import LionTestModal from "./liontest/LionTestModal";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [modal, setModal] = useState(0);
@@ -9,12 +10,22 @@ const Home = () => {
   return (
     <AppDom>
       <MenuDom>
-        <MenuButton onClick={() => setModal(0)} clicked={modal === 0}>
+        <MenuButtonLink
+          to="/"
+          style={{ textDecoration: "none" }}
+          onClick={() => setModal(0)}
+          selected={modal === 0}
+        >
           아기사자 정보
-        </MenuButton>
-        <MenuButton onClick={() => setModal(1)} clicked={modal === 1}>
+        </MenuButtonLink>
+        <MenuButtonLink
+          to="/"
+          style={{ textDecoration: "none" }}
+          onClick={() => setModal(1)}
+          selected={modal === 1}
+        >
           멋사인 테스트
-        </MenuButton>
+        </MenuButtonLink>
       </MenuDom>
       <ModalDom>{modal === 0 ? <LionInfoModal /> : <LionTestModal />}</ModalDom>
     </AppDom>
@@ -29,12 +40,12 @@ const AppDom = styled.div`
   gap: 30px;
 `;
 
-const MenuButton = styled.div`
+const MenuButtonLink = styled(Link)`
   display: flex;
   width: 200px;
   height: 100px;
   border-radius: 20px;
-  background-color: ${(props) => (props.clicked ? "orange" : "gray")};
+  background-color: ${(props) => (props.selected ? "orange" : "gray")};
   color: white;
   font-size: 25px;
   font-weight: 700;
