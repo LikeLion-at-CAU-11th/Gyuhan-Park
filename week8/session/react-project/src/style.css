@@ -1,0 +1,28 @@
+.container {
+    width: 300px;
+    height: 450px;
+    padding: 10px;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.img {
+    width: 300px;
+}
+
+.btn {
+    width: 60px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn:active {
+    background-color: pink;
+    transform: scale(1.2);
+}

@@ -2,10 +2,10 @@ const url = "./data/data.json";
 const container = document.getElementById("container");
 
 function fetchData() {
-    container.replaceChildren();
+  container.replaceChildren();
+
   fetch(url)
     .then((res) => {
-      console.log(res);
       return res.json();
     })
     .then((res) => {
