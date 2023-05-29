@@ -36,7 +36,7 @@ const FilterButton = ({
   return (
     <>
       <ButtonLink
-        to={`/?type=${type}`}
+        to={`/lioninfo?type=${type}`}
         style={{ textDecoration: "none" }}
         id={title}
         onClick={handleClick}

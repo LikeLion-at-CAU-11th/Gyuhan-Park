@@ -11,7 +11,7 @@ const Home = () => {
     <AppDom>
       <MenuDom>
         <MenuButtonLink
-          to="/"
+          to="/lioninfo"
           style={{ textDecoration: "none" }}
           onClick={() => setModal(0)}
           selected={modal === 0}
@@ -19,7 +19,7 @@ const Home = () => {
           아기사자 정보
         </MenuButtonLink>
         <MenuButtonLink
-          to="/"
+          to="/liontest"
           style={{ textDecoration: "none" }}
           onClick={() => setModal(1)}
           selected={modal === 1}
