@@ -14,7 +14,7 @@ export const Inputs = styled.div`
     margin-right: 10px;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     height: 100%;
 `;
