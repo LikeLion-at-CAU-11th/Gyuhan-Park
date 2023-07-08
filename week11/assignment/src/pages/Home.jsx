@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Form, Input, Inputs, Title, Wrapper } from "../components/Common";
 import { Link } from "react-router-dom";
+import { login } from "../apis/login";
 
 const Home = () => {
     const [id, setId] = useState("");
@@ -16,9 +17,9 @@ const Home = () => {
         setPw(e.target.value);
     };
 
-    const handleSubmitLogin = (e) => {
+    const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        console.log(id, pw);
+        await login(id, pw);
         setId("");
         setPw("");
     };
