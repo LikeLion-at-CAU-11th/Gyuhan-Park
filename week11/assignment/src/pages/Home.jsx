@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { Form, Input, Inputs, Title, Wrapper } from "../components/Common";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../apis/login";
 
 const Home = () => {
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const router = useNavigate();
 
     const handleInputId = (e) => {
         setId(e.target.value);
@@ -20,6 +21,7 @@ const Home = () => {
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
         await login(id, pw);
+        router("/mypage");
         setId("");
         setPw("");
     };
