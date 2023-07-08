@@ -20,8 +20,13 @@ const Home = () => {
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        await login(id, pw);
-        router("/mypage");
+        await login(id, pw)
+            .then((res) => router("/mypage"))
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    alert("로그인 정보를 확인해주세요.");
+                }
+            });
         setId("");
         setPw("");
     };
