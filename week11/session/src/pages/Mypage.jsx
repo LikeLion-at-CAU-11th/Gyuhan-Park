@@ -17,8 +17,8 @@ const Mypage = () => {
     return (
         <div>
             <h1>My Page</h1>
-            {/* <div>{data?.age}</div>
-            <div> {data?.name}</div> */}
+            <div>{data?.age}</div>
+            <div> {data?.name}</div>
         </div>
     );
 };
