@@ -1,7 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { Form, Input, Inputs, Title, Wrapper } from "../components/Common";
+import {
+    Button,
+    Form,
+    Input,
+    Inputs,
+    Title,
+    Wrapper,
+} from "../components/Common";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../apis/login";
 
@@ -23,6 +30,7 @@ const Home = () => {
         await login(id, pw)
             .then((res) => router("/mypage"))
             .catch((error) => {
+                console.log("erad:", error);
                 if (error.response.status === 401) {
                     alert("로그인 정보를 확인해주세요.");
                 }
@@ -50,15 +58,9 @@ const Home = () => {
                 </Inputs>
                 <Button>Login</Button>
             </Form>
-            <Link to="mypage">회원가입하기</Link>
+            <Link to="signup">회원가입하기</Link>
         </Wrapper>
     );
 };
-
-const Button = styled.button`
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-`;
 
 export default Home;

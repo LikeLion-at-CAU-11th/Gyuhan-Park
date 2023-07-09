@@ -38,3 +38,9 @@ export const Input = styled.input`
         font-family: "OTWelcomeRA";
     }
 `;
+
+export const Button = styled.button`
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+`;
