@@ -11,7 +11,9 @@ const Mypage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getMypage().then((result) => setData(result.data));
+        getMypage()
+            .then((result) => setData(result.data))
+            .catch((error) => console.log("refresh token expired!! ", error));
         setIsLoading(false);
     }, []);
 
