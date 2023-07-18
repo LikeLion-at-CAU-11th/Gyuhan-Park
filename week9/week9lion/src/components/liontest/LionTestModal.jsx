@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { getAllQuestions, getTestResult } from "../../apis/liontest";
 import QuestionSectionComponent from "./QuestionSectionComponent";
@@ -15,14 +16,13 @@ const LionTestModal = () => {
   const [question, setQuestion] = useState({});
   const [resultAnswer, setResultAnswer] = useState([]);
   const [finalResult, setFinalResult] = useState({});
+  const [allQuestion, setAllQuestion] = useState([]);
 
   const getNewQuestion = async (id) => {
-    const questionData = await getAllQuestions();
-    const questions = questionData.data.data;
-    if (!questions[id]) {
+    if (!allQuestion[id]) {
       setStart(false);
     } else {
-      setQuestion(questions[id]);
+      setQuestion(allQuestion[id]);
       setStart(true);
     }
   };
@@ -54,6 +54,14 @@ const LionTestModal = () => {
     const resultData = response.data.data;
     setFinalResult(resultData);
   };
+
+  const getQuestionData = async () => {
+    const questionData = await getAllQuestions();
+    setAllQuestion(questionData.data.data);
+  };
+  useEffect(() => {
+    getQuestionData();
+  }, []);
 
   return (
     <>
