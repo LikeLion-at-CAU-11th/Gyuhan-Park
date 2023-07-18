@@ -9,10 +9,16 @@ const MyPage = () => {
         name: "",
         age: 0,
     });
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        checkAccessToken().then((res) => setData(res.data));
+        checkAccessToken().then((res) => {
+            setData(res.data);
+            setIsLoading(false);
+        });
     }, []);
+
+    if (isLoading) return <div>로딩중 ...</div>;
 
     return (
         <Wrapper>
