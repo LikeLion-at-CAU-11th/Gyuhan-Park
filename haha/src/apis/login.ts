@@ -8,3 +8,12 @@ export const login = async (id: string, pw: string) => {
     localStorage.setItem("access", accessToken);
     localStorage.setItem("refresh", refreshToken);
 };
+
+export const checkAccessToken = async () => {
+    const accessToken = localStorage.getItem("access");
+    return await axios.get(`${baseUrl}/mypage`, {
+        headers: {
+            Authorization: accessToken,
+        },
+    });
+};

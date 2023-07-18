@@ -1,5 +1,6 @@
 "use client";
 
+import { checkAccessToken } from "@/apis/login";
 import { Title, Wrapper } from "@/components/Common";
 import { useEffect, useState } from "react";
 
@@ -8,6 +9,10 @@ const MyPage = () => {
         name: "",
         age: 0,
     });
+
+    useEffect(() => {
+        checkAccessToken().then((res) => setData(res.data));
+    }, []);
 
     return (
         <Wrapper>
