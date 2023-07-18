@@ -21,6 +21,10 @@ export const checkAccessToken = async () => {
         if (error.response.status === 401) {
             const result = await getRefresh();
             console.log("access token 만료 !");
+            if (result === "refresh 토큰이 만료되었습니다.") {
+                alert("로그인이 필요합니다.");
+                window.location.assign("/");
+            }
             error.config.headers.Authorization = result.accessToken;
             return await axios.get(error.config.url, error.config);
         }
@@ -30,10 +34,17 @@ export const checkAccessToken = async () => {
 export const getRefresh = async () => {
     const accessToken = localStorage.getItem("access");
     const refreshToken = localStorage.getItem("refresh");
-    const result = await axios.post(
-        `${baseUrl}/refresh`,
-        { refreshToken },
-        { headers: { Authorization: accessToken } }
-    );
-    return result.data;
+
+    return await axios
+        .post(
+            `${baseUrl}/refresh`,
+            { refreshToken },
+            { headers: { Authorization: accessToken } }
+        )
+        .then((res) => res.data)
+        .catch((error) => {
+            if (error.response.status === 401) {
+                return error.response.data.message;
+            }
+        });
 };
