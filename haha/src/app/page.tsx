@@ -10,13 +10,16 @@ import {
 } from "@/components/Common";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+import { login } from "@/apis/login";
 
 export default function Home() {
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
 
-    const handleSubmitLogin = (e: any) => {
+    const handleSubmitLogin = async (e: any) => {
         e.preventDefault();
+        login(id, pw).then((res) => console.log("!"));
         setId("");
         setPw("");
     };
