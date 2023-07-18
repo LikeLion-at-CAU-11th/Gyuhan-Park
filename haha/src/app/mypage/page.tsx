@@ -13,7 +13,7 @@ const MyPage = () => {
 
     useEffect(() => {
         checkAccessToken().then((res) => {
-            setData(res.data);
+            setData(res?.data);
             setIsLoading(false);
         });
     }, []);
