@@ -12,8 +12,8 @@ const MyPage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        checkAccessToken().then((res) => {
-            setData(res?.data);
+        checkAccessToken().then((res: any) => {
+            setData(res.data);
             setIsLoading(false);
         });
     }, []);
