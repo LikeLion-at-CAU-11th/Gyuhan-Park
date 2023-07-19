@@ -10,50 +10,68 @@ import {
 } from "@/components/Common";
 import Link from "next/link";
 import { useState } from "react";
-import axios from "axios";
 import { login } from "@/apis/login";
 import { useRouter } from "next/navigation";
+import styled from "styled-components";
 
 export default function Home() {
-    const [id, setId] = useState("");
-    const [pw, setPw] = useState("");
-    const router = useRouter();
-
-    const handleSubmitLogin = async (e: any) => {
-        e.preventDefault();
-        login(id, pw).then((res) => router.push("/mypage"));
-        setId("");
-        setPw("");
-    };
-    const handleInputId = (e: any) => {
-        setId(e.target.value);
-    };
-    const handleInputPassword = (e: any) => {
-        setPw(e.target.value);
-    };
+    const [selectedMenu, setSelectedMenu] = useState(0);
 
     return (
         <Wrapper>
-            <Title>로그인하기</Title>
-            <Form onSubmit={handleSubmitLogin}>
-                <Inputs>
-                    <Input
-                        placeholder="아이디를 입력하세요"
-                        onChange={handleInputId}
-                        value={id}
-                    ></Input>
-                    <Input
-                        placeholder="비밀번호를 입력하세요"
-                        type="password"
-                        onChange={handleInputPassword}
-                        value={pw}
-                    ></Input>
-                </Inputs>
-                <Button>Login</Button>
-            </Form>
-            <Title>
-                <Link href="signup">회원가입하기</Link>
-            </Title>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 20,
+                    flexBasis: "30%",
+                    width: "90vw",
+                    height: "90%",
+                }}
+            >
+                <MenuButton
+                    onClick={() => setSelectedMenu(0)}
+                    clicked={selectedMenu ? 0 : 1}
+                >
+                    아기사자 정보
+                </MenuButton>
+                <MenuButton
+                    onClick={() => setSelectedMenu(1)}
+                    clicked={selectedMenu ? 1 : 0}
+                >
+                    멋사인 테스트
+                </MenuButton>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    flexBasis: "70%",
+                    border: "3px solid black",
+                    width: "90vw",
+                    height: "500px",
+                }}
+            >
+                dasd
+            </div>
         </Wrapper>
     );
 }
+
+interface IMenu {
+    clicked: number;
+}
+
+const MenuButton = styled.div<IMenu>`
+    display: flex;
+    width: 200px;
+    height: 100px;
+    border-radius: 20px;
+    background-color: ${(props) => (props.clicked ? "orange" : "gray")};
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+`;
