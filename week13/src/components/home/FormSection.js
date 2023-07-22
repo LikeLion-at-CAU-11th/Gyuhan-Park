@@ -18,8 +18,17 @@ const FormSection = () => {
 
     return (
         <>
-            <Form type="text" inputType="이름" />
-            <Form type="email" inputType="이메일" />
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 10,
+                    marginBottom: 10,
+                }}
+            >
+                <Form type="text" inputType="이름" />
+                <Form type="email" inputType="이메일" />
+            </div>
             <Button mode={mode.button} onClick={handleClick}>
                 제출
             </Button>

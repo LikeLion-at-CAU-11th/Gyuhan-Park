@@ -14,10 +14,18 @@ const Form = ({ type, inputType }) => {
     };
 
     return (
-        <>
-            <div>{inputType}</div>
+        <div style={{ display: "flex", gap: 10 }}>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    width: "50px",
+                }}
+            >
+                {inputType}
+            </div>
             <input type={type} onChange={onChange} />
-        </>
+        </div>
     );
 };
 
