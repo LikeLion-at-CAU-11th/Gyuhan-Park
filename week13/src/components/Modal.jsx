@@ -17,34 +17,13 @@ const Modal = () => {
         setIsModal(false);
         navigate("/mypage");
     };
+
     return (
         <ModalWrapper>
-            <div
-                style={{
-                    borderBottom: "2px solid black",
-                }}
-            >
-                <h1
-                    style={{
-                        backgroundColor: `${mode.main}`,
-                        margin: 0,
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
-                    확인 모달창
-                </h1>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    backgroundColor: `${mode.sub}`,
-                    gap: 20,
-                    padding: 20,
-                }}
-            >
+            <ModalHeader>
+                <ModalTitle mode={mode.main}>확인 모달창</ModalTitle>
+            </ModalHeader>
+            <ModalBody mode={mode.sub}>
                 <div>아이디 : {userName}</div>
                 <div>이메일 : {email}</div>
                 <div>
@@ -52,19 +31,41 @@ const Modal = () => {
                         확인
                     </Button>
                 </div>
-            </div>
+            </ModalBody>
         </ModalWrapper>
     );
 };
 
 const ModalWrapper = styled.div`
     position: absolute;
-    backgroundcolor: white;
+    background-color: white;
     zindex: 1;
     border: 2px solid black;
-    borderradius: 20;
+    border-radius: 20;
     width: 30vw;
     height: 25vh;
     overflow: hidden;
 `;
+
+const ModalHeader = styled.div`
+    border-bottom: 2px solid black;
+`;
+
+const ModalTitle = styled.h1`
+    background-color: ${(props) => props.mode};
+    margin: 0;
+    display: flex;
+    justify-content: center;
+`;
+const ModalBody = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
+    background-color: ${(props) => props.mode};
+    gap: 20;
+    padding: 20;
+`;
+
 export default Modal;

@@ -13,8 +13,6 @@ const FormSection = () => {
     const [isSubmited, setIsSubmited] = useRecoilState(isSubmitedAtom);
     const [isModal, setIsModal] = useRecoilState(isModalAtom);
 
-    const modalRef = useRef();
-
     const handleClick = () => {
         setIsSubmited(true);
         if (!isModal) navigate("/mypage");
