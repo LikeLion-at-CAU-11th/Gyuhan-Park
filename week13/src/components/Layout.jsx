@@ -1,9 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/context";
 import { Button } from "../layout/common";
-import { useRecoilValue } from "recoil";
-import { emailAtom, isSubmitedAtom, userNameAtom } from "../recoil/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+    emailAtom,
+    isModalAtom,
+    isSubmitedAtom,
+    userNameAtom,
+} from "../recoil/atoms";
 
 const Layout = ({ children }) => {
     const context = useContext(ThemeContext);
@@ -13,11 +18,18 @@ const Layout = ({ children }) => {
     const email = useRecoilValue(emailAtom);
     const isSubmited = useRecoilValue(isSubmitedAtom);
 
+    const modalRef = useRef();
+    const setIsModal = useSetRecoilState(isModalAtom);
+
     const handleClick = (e) => {
         const color = e.target.value;
         if (color === "blue") setMode(context.blueTheme);
         if (color === "green") setMode(context.greenTheme);
         if (color === "pink") setMode(context.pinkTheme);
+    };
+
+    const handleOutModal = (e) => {
+        if (modalRef.current === e.target) setIsModal(false);
     };
 
     return (
@@ -34,7 +46,19 @@ const Layout = ({ children }) => {
                         Pink
                     </Button>
                 </Header>
-                <div>{children}</div>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "80vh",
+                    }}
+                    ref={modalRef}
+                    onClick={handleOutModal}
+                >
+                    {children}
+                </div>
                 <Footer mode={mode.main}>
                     {!isSubmited
                         ? ""

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/context";
 import { Button } from "../../layout/common";
@@ -12,6 +12,8 @@ const FormSection = () => {
     const navigate = useNavigate();
     const [isSubmited, setIsSubmited] = useRecoilState(isSubmitedAtom);
     const [isModal, setIsModal] = useRecoilState(isModalAtom);
+
+    const modalRef = useRef();
 
     const handleClick = () => {
         setIsSubmited(true);
