@@ -17,8 +17,6 @@ const FormSection = () => {
     const navigate = useNavigate();
     const [isSubmited, setIsSubmited] = useRecoilState(isSubmitedAtom);
     const [isModal, setIsModal] = useRecoilState(isModalAtom);
-    const [userName, setUserName] = useRecoilValue(userNameAtom);
-    const [email, setEmail] = useRecoilState(emailAtom);
 
     const handleClick = () => {
         setIsSubmited(true);
@@ -42,9 +40,7 @@ const FormSection = () => {
             <Button mode={mode.button} onClick={handleClick}>
                 제출
             </Button>
-            {isSubmited && isModal && (
-                <Modal username={userName} email={email} />
-            )}
+            {isSubmited && isModal && <Modal />}
         </>
     );
 };
