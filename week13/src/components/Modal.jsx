@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context/context";
 import { Button } from "../layout/common";
@@ -13,31 +13,54 @@ const Modal = () => {
     const email = useRecoilValue(emailAtom);
     const setIsModal = useSetRecoilState(isModalAtom);
 
+    const modalRef = useRef();
+
+    const handleOutModal = (e) => {
+        if (modalRef.current === e.target) setIsModal(false);
+    };
+
     const handleClick = () => {
         setIsModal(false);
         navigate("/mypage");
     };
 
     return (
-        <ModalWrapper>
-            <ModalHeader>
-                <ModalTitle mode={mode.main}>확인 모달창</ModalTitle>
-            </ModalHeader>
-            <ModalBody mode={mode.sub}>
-                <div>아이디 : {userName}</div>
-                <div>이메일 : {email}</div>
-                <div>
-                    <Button mode={mode.button} onClick={handleClick}>
-                        확인
-                    </Button>
-                </div>
-            </ModalBody>
+        <ModalWrapper ref={modalRef} onClick={handleOutModal}>
+            <ModalBox>
+                <ModalHeader>
+                    <ModalTitle mode={mode.main}>확인 모달창</ModalTitle>
+                </ModalHeader>
+                <ModalBody mode={mode.sub}>
+                    <div>아이디 : {userName}</div>
+                    <div>이메일 : {email}</div>
+                    <div>
+                        <Button mode={mode.button} onClick={handleClick}>
+                            확인
+                        </Button>
+                    </div>
+                </ModalBody>
+            </ModalBox>
         </ModalWrapper>
     );
 };
 
 const ModalWrapper = styled.div`
     position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    // height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+`;
+
+const ModalBox = styled.div`
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    bottom: 0;
+    right: 0;
     background-color: white;
     zindex: 1;
     border: 2px solid black;

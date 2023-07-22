@@ -18,18 +18,11 @@ const Layout = ({ children }) => {
     const email = useRecoilValue(emailAtom);
     const isSubmited = useRecoilValue(isSubmitedAtom);
 
-    const modalRef = useRef();
-    const setIsModal = useSetRecoilState(isModalAtom);
-
     const handleClick = (e) => {
         const color = e.target.value;
         if (color === "blue") setMode(context.blueTheme);
         if (color === "green") setMode(context.greenTheme);
         if (color === "pink") setMode(context.pinkTheme);
-    };
-
-    const handleOutModal = (e) => {
-        if (modalRef.current === e.target) setIsModal(false);
     };
 
     return (
@@ -46,19 +39,7 @@ const Layout = ({ children }) => {
                         Pink
                     </Button>
                 </Header>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100%",
-                        height: "80vh",
-                    }}
-                    ref={modalRef}
-                    onClick={handleOutModal}
-                >
-                    {children}
-                </div>
+                <div>{children}</div>
                 <Footer mode={mode.main}>
                     {!isSubmited
                         ? ""
