@@ -14,3 +14,8 @@ export const emailAtom = atom({
     key: "email",
     default: "@@@",
 });
+
+export const isModalAtom = atom({
+    key: "modal",
+    default: false,
+});
