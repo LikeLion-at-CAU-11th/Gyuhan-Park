@@ -3,17 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/context";
 import { Button } from "../../layout/common";
 import Form from "./Form";
-import { isSubmitedAtom } from "../../recoil/atoms";
-import { useSetRecoilState } from "recoil";
+import {
+    emailAtom,
+    isModalAtom,
+    isSubmitedAtom,
+    userNameAtom,
+} from "../../recoil/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import Modal from "../Modal";
 
 const FormSection = () => {
     const mode = useContext(ThemeContext);
     const navigate = useNavigate();
-    const setSubmit = useSetRecoilState(isSubmitedAtom);
+    const [isSubmited, setIsSubmited] = useRecoilState(isSubmitedAtom);
+    const [isModal, setIsModal] = useRecoilState(isModalAtom);
+    const [userName, setUserName] = useRecoilValue(userNameAtom);
+    const [email, setEmail] = useRecoilState(emailAtom);
 
     const handleClick = () => {
-        setSubmit(true);
-        navigate("/mypage");
+        setIsSubmited(true);
+        if (!isModal) navigate("/mypage");
     };
 
     return (
@@ -33,6 +42,9 @@ const FormSection = () => {
             <Button mode={mode.button} onClick={handleClick}>
                 제출
             </Button>
+            {isSubmited && isModal && (
+                <Modal username={userName} email={email} />
+            )}
         </>
     );
 };
