@@ -3,13 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/context";
 import { Button } from "../../layout/common";
 import Form from "./Form";
-import {
-    emailAtom,
-    isModalAtom,
-    isSubmitedAtom,
-    userNameAtom,
-} from "../../recoil/atoms";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { isModalAtom, isSubmitedAtom } from "../../recoil/atoms";
+import { useRecoilState } from "recoil";
 import Modal from "../Modal";
 
 const FormSection = () => {
