@@ -18,6 +18,11 @@ const FormSection = () => {
         if (!isModal) navigate("/mypage");
     };
 
+    const onChange = (e) => {
+        const isChecked = e.target.checked;
+        setIsModal(isChecked);
+    };
+
     return (
         <>
             <div
@@ -30,7 +35,12 @@ const FormSection = () => {
             >
                 <Form type="text" inputType="이름" />
                 <Form type="email" inputType="이메일" />
-                <Form type="checkbox" inputType="modal" />
+                <input
+                    type="checkbox"
+                    inputType="modal"
+                    onChange={onChange}
+                    checked={isModal}
+                />
             </div>
             <Button mode={mode.button} onClick={handleClick}>
                 제출

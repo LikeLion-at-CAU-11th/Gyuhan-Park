@@ -2,7 +2,12 @@ import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context/context";
 import { Button } from "../layout/common";
-import { emailAtom, isModalAtom, userNameAtom } from "../recoil/atoms";
+import {
+    emailAtom,
+    isModalAtom,
+    isSubmitedAtom,
+    userNameAtom,
+} from "../recoil/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
@@ -12,11 +17,15 @@ const Modal = () => {
     const userName = useRecoilValue(userNameAtom);
     const email = useRecoilValue(emailAtom);
     const setIsModal = useSetRecoilState(isModalAtom);
+    const setIsSubmited = useSetRecoilState(isSubmitedAtom);
 
     const modalRef = useRef();
 
     const handleOutModal = (e) => {
-        if (modalRef.current === e.target) setIsModal(false);
+        if (modalRef.current === e.target) {
+            setIsSubmited(true);
+            setIsModal(false);
+        }
     };
 
     const handleClick = () => {

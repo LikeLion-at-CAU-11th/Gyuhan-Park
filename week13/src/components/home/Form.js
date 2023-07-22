@@ -8,17 +8,13 @@ import {
 } from "../../recoil/atoms";
 
 const Form = ({ type, inputType }) => {
-    const [userName, setUserName] = useRecoilState(userNameAtom);
-    const [email, setEmail] = useRecoilState(emailAtom);
-    const [isModal, setIsModal] = useRecoilState(isModalAtom);
-    const isSubmited = useSetRecoilState(isSubmitedAtom);
+    const setUserName = useSetRecoilState(userNameAtom);
+    const setEmail = useRecoilState(emailAtom);
 
     const onChange = (e) => {
-        const isChecked = e.target.checked;
         const data = e.target.value;
         if (inputType === "이름") setUserName(data);
         if (inputType === "이메일") setEmail(data);
-        if (inputType === "modal") setIsModal(isChecked);
     };
 
     return (
