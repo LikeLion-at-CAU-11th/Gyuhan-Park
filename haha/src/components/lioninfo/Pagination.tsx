@@ -14,7 +14,6 @@ interface IPaginationProps {
 }
 
 const Pagination = ({ pageNumbers, handleClickPage, userData, setUserData }: IPaginationProps) => {
-  console.log("numbers:", pageNumbers);
   return (
     <PaginationDom>
       {pageNumbers.map((number) => (
@@ -23,7 +22,6 @@ const Pagination = ({ pageNumbers, handleClickPage, userData, setUserData }: IPa
           id={number.id}
           $clicked={number.clicked}
           onClick={(e: any) => {
-            console.log("pagenum:", e.target.id);
             handleClickPage(e.target.id);
           }}
         >

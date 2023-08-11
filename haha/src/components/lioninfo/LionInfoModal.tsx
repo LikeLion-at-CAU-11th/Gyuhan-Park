@@ -1,5 +1,5 @@
 import { ICategory, IUser } from "@/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getUserPerPage } from "@/apis/lioninfo";
 import FilterButton from "./FilterButton";
@@ -63,7 +63,6 @@ const LionInfoModal = () => {
   ]);
 
   const handleClickSort = () => {
-    console.log("sort: ", userData);
     setUserData(userData.slice().sort((a, b) => (a.name > b.name ? 1 : -1)));
   };
 
