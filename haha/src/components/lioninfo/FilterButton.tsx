@@ -33,13 +33,13 @@ const FilterButton = ({
       console.log("all data: ", data);
       const response = await getUserPerPage("1");
       handleAllFirstPage("1");
-      setUserData(response.data.data);
+      setUserData(response);
     } else if (type === "gender") {
       const response = await getUserPerGender(title);
-      setUserData(response.data.data);
+      setUserData(response);
     } else if (type === "stack") {
       const response = await getUserPerStack(title);
-      setUserData(response.data.data);
+      setUserData(response);
     }
   };
   return (

@@ -81,7 +81,7 @@ const LionInfoModal = () => {
         number.id === id ? { ...number, clicked: true } : { ...number, clicked: false }
       )
     );
-    setUserData(response.data.data);
+    setUserData(response);
   };
 
   const handleAllFirstPage = (id: string) => {

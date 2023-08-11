@@ -6,14 +6,20 @@ export const getAllUserPerPage = () => {
   return axios.get(`${baseUrl}/user?page=0`);
 };
 
-export const getUserPerPage = (page: string) => {
-  return axios.get(`${baseUrl}/user?page=${page}`);
+export const getUserPerPage = async (page: string) => {
+  const res = await fetch(`${baseUrl}/user?page=${page}`, { next: { revalidate: 300 } });
+  const result = await res.json();
+  return result.data;
 };
 
-export const getUserPerGender = (gender: string) => {
-  return axios.get(`${baseUrl}/user?gender=${gender}`);
+export const getUserPerGender = async (gender: string) => {
+  const res = await fetch(`${baseUrl}/user?gender=${gender}`, { next: { revalidate: 300 } });
+  const result = await res.json();
+  return result.data;
 };
 
-export const getUserPerStack = (stack: string) => {
-  return axios.get(`${baseUrl}/user?stack=${stack}`);
+export const getUserPerStack = async (stack: string) => {
+  const res = await fetch(`${baseUrl}/user?stack=${stack}`, { next: { revalidate: 300 } });
+  const result = await res.json();
+  return result.data;
 };
