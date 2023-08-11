@@ -1,18 +1,25 @@
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 interface IHeader {
-  modal: number;
-  setModal: React.Dispatch<React.SetStateAction<number>>;
+  type: "lioninfo" | "liontest" | "home";
 }
 
-const Header = ({ modal, setModal }: IHeader) => {
+const Header = ({ type }: IHeader) => {
+  const router = useRouter();
+
+  const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
+    const page = e.currentTarget.id;
+    router.push(`/${page}`);
+  };
+
   return (
     <MenuDom>
-      <MenuButton onClick={() => setModal(0)} $clicked={modal === 0}>
+      <MenuButton id="lioninfo" onClick={handleClickTab} $clicked={type === "lioninfo"}>
         아기사자 정보
       </MenuButton>
-      <MenuButton onClick={() => setModal(1)} $clicked={modal === 1}>
+      <MenuButton id="liontest" onClick={handleClickTab} $clicked={type === "liontest"}>
         멋사인 테스트
       </MenuButton>
     </MenuDom>

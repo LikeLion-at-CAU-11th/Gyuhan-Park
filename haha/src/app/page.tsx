@@ -6,7 +6,7 @@ import styled from "styled-components";
 export default function Home() {
   return (
     <AppDom>
-      <Header />
+      <Header type="home" />
     </AppDom>
   );
 }

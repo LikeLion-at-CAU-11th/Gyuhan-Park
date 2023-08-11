@@ -1,12 +1,14 @@
 "use client";
 
+import Header from "@/components/common/Header";
 import LionInfoModal from "@/components/lioninfo/LionInfoModal";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const LionInfoPage = () => {
   return (
     <ModalDom>
+      <Header type="lioninfo" />
       <LionInfoModal />
     </ModalDom>
   );
@@ -14,7 +16,8 @@ const LionInfoPage = () => {
 
 const ModalDom = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default LionInfoPage;
