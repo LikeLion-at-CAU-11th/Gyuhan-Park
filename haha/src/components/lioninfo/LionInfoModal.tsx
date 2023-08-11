@@ -11,9 +11,9 @@ import { useSearchParams } from "next/navigation";
 
 const LionInfoModal = () => {
   const [userData, setUserData] = useState<IUser[]>([]);
-  const searchParams = useSearchParams();
-  const paramsType = searchParams.get("type");
-  console.log("parameter:", paramsType);
+  // const searchParams = useSearchParams();
+  // const paramsType = searchParams.get("type");
+  // console.log("parameter:", paramsType);
 
   const [pageNumbers, setPageNumbers] = useState([
     { id: "1", clicked: false },
