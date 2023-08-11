@@ -14,19 +14,7 @@ interface IPaginationProps {
 }
 
 const Pagination = ({ pageNumbers, handleClickPage, userData, setUserData }: IPaginationProps) => {
-  // 페이지별 데이터 각각 받아와, PageButton 컴포넌트 클릭 시 알맞는 데이터 렌더링
-  // const handleClickPage = async (e) => {
-  //   const response = await getUserPerPage(e.target.id);
-  //   setPageNumbers(
-  //     pageNumbers.map((number) =>
-  //       number.id === e.target.id
-  //         ? { ...number, clicked: true }
-  //         : { ...number, clicked: false }
-  //     )
-  //   );
-  //   setUserData(response.data.data);
-  // };
-
+  console.log("numbers:", pageNumbers);
   return (
     <PaginationDom>
       {pageNumbers.map((number) => (
@@ -35,6 +23,7 @@ const Pagination = ({ pageNumbers, handleClickPage, userData, setUserData }: IPa
           id={number.id}
           $clicked={number.clicked}
           onClick={(e: any) => {
+            console.log("pagenum:", e.target.id);
             handleClickPage(e.target.id);
           }}
         >

@@ -1,13 +1,18 @@
 import { ICategory, IUser } from "@/types";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { getAllUserPerPage } from "@/apis/lioninfo";
+import { getUserPerPage } from "@/apis/lioninfo";
 import FilterButton from "./FilterButton";
 import Pagination from "./Pagination";
 import UserDataSection from "./UserDataSection";
+import { useSearchParams } from "next/navigation";
 
 const LionInfoModal = () => {
   const [userData, setUserData] = useState<IUser[]>([]);
+  const searchParams = useSearchParams();
+  const paramsType = searchParams.get("type");
+  console.log("parameter:", paramsType);
+
   const [pageNumbers, setPageNumbers] = useState([
     { id: "1", clicked: false },
     { id: "2", clicked: false },
@@ -70,18 +75,24 @@ const LionInfoModal = () => {
     );
   };
 
-  // 전체 리스트 (28개 데이터) 받아와 클라이언트단에서 슬라이싱하여, PageButton 컴포넌트 클릭 시 알맞는 데이터 렌더링
   const handleClickPage = async (id: string) => {
-    const pageId = parseInt(id);
-    const response = await getAllUserPerPage();
-    const userDataPerPage: IUser[] = response.data.data.slice((pageId - 1) * 4, pageId * 4);
-    setUserData(userDataPerPage);
+    const response = await getUserPerPage(id);
+    setPageNumbers(
+      pageNumbers.map((number) =>
+        number.id === id ? { ...number, clicked: true } : { ...number, clicked: false }
+      )
+    );
+    setUserData(response.data.data);
+  };
+
+  const handleAllFirstPage = (id: string) => {
     setPageNumbers(
       pageNumbers.map((number) =>
         number.id === id ? { ...number, clicked: true } : { ...number, clicked: false }
       )
     );
   };
+
   return (
     <Dom>
       <div style={{ display: "flex" }}>
@@ -97,9 +108,9 @@ const LionInfoModal = () => {
             key={idx}
             data={category}
             setUserData={setUserData}
-            handleClickPage={handleClickPage}
             setIsPaged={setIsPaged}
             handleClickFilterButton={handleClickFilterButton}
+            handleAllFirstPage={handleAllFirstPage}
           />
         ))}
       </ButtonDom>

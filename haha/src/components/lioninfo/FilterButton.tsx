@@ -2,21 +2,22 @@ import { ICategory, IUser } from "@/types";
 import React from "react";
 import styled from "styled-components";
 import { getUserPerGender, getUserPerPage, getUserPerStack } from "@/apis/lioninfo";
+import Link from "next/link";
 
 interface IFilterButtonProps {
   data: ICategory;
   setUserData: React.Dispatch<React.SetStateAction<IUser[]>>;
-  handleClickPage: (id: string) => Promise<void>;
   setIsPaged: React.Dispatch<React.SetStateAction<boolean>>;
   handleClickFilterButton: (title: String) => void;
+  handleAllFirstPage: any;
 }
 
 const FilterButton = ({
   data,
   setUserData,
-  handleClickPage,
   setIsPaged,
   handleClickFilterButton,
+  handleAllFirstPage,
 }: IFilterButtonProps) => {
   const { type, title, clicked } = data;
 
@@ -29,8 +30,9 @@ const FilterButton = ({
 
     // type에 따라 API 결정
     if (type === "page") {
-      const response = await getUserPerPage(1);
-      handleClickPage("1");
+      console.log("all data: ", data);
+      const response = await getUserPerPage("1");
+      handleAllFirstPage("1");
       setUserData(response.data.data);
     } else if (type === "gender") {
       const response = await getUserPerGender(title);
@@ -41,9 +43,17 @@ const FilterButton = ({
     }
   };
   return (
-    <Button id={title} onClick={handleClickButton} $clicked={clicked}>
-      {title}
-    </Button>
+    <>
+      <ButtonLink
+        href={`/lioninfo?type=${type}`}
+        style={{ textDecoration: "none" }}
+        id={title}
+        onClick={handleClickButton}
+        $clicked={clicked}
+      >
+        {title}
+      </ButtonLink>
+    </>
   );
 };
 
@@ -51,7 +61,7 @@ interface IButtonProps {
   $clicked: boolean;
 }
 
-const Button = styled.div<IButtonProps>`
+const ButtonLink = styled(Link)<IButtonProps>`
   flex-basis: 13%;
   height: 70px;
   background-color: beige;
@@ -65,4 +75,5 @@ const Button = styled.div<IButtonProps>`
   box-shadow: ${(props) => (props.$clicked ? "2px 2px 2px 2px gray" : "")};
   background-color: ${(props) => (props.$clicked ? "yellow" : "beige")};
 `;
+
 export default FilterButton;

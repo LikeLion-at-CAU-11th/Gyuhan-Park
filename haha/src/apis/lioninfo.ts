@@ -6,7 +6,7 @@ export const getAllUserPerPage = () => {
   return axios.get(`${baseUrl}/user?page=0`);
 };
 
-export const getUserPerPage = (page: number) => {
+export const getUserPerPage = (page: string) => {
   return axios.get(`${baseUrl}/user?page=${page}`);
 };
 
