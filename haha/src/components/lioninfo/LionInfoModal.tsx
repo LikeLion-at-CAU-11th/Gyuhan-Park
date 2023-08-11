@@ -1,3 +1,5 @@
+"use client";
+
 import { ICategory, IUser } from "@/types";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
